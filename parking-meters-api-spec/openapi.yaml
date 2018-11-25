@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  description: "This is the interface for parking information search"
+  version: "1.0.0"
+  title: "Parking Meters"
+  termsOfService: "https://github.com/Toblerones/ParkingMeters"
+  contact:
+    email: "toblerones@gmail.com"
+
+servers: 
+- url: https://{subdomain}.com/{version}
+  description: Backend API
+  variables:
+    subdomain:
+      default: toblerones
+    version:
+      enum:
+        - v1
+        - v2
+      default: v1
+
+paths:
+  /parkingInfo:
+    post:
+      requestBody:
+        description: parking information request
+        required: true
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Location'
+      responses:
+        '201':
+          description: yes
+
+components:
+  schemas:
+    Location:
+      title: location
+      type: object
+      properties:
+        xloc:
+          type: string
+          description: X alias
+        yloc:
+          type: string
+          description: X alias
+
+        
